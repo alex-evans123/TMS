@@ -53,432 +53,444 @@ export default class AdminDashboard extends React.Component {
     });
   }
   componentDidMount() {
-    const data = require('../src/data.json')
-    console.log('data : ', data)
-    this.setState({ data: data, dataBackup: data })
-    // th
-  }
+    // const data = require('../src/data.json')
+    // console.log('data : ', data)
+    fetch('http://nexgenapi.dyndns.org:1024/Home/GetEmployees', {
+      method: 'POST',//GET and ...
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
+      },
+    })
+    .then(d=>{
+      d.json(data=>{
+        this.setState({ data: data, dataBackup: data })
+      })
+    })
+        // th
+      }
   componentDidUpdate() {
 
-    // fetch('http://nexgenapi.dyndns.org:1024/Home/GetEmployees', {
-    //   method: 'POST',//GET and ...
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
-    //   },
-    // })
-    //   .then(response => response.json())
-    //   .then(responseJson => {
-    //     console.log('responseJson : ',responseJson)
-    //     this.setState(
-    //       {
-    //         isLoading: false,
-    //         dataSource: responseJson,
+        // fetch('http://nexgenapi.dyndns.org:1024/Home/GetEmployees', {
+        //   method: 'POST',//GET and ...
+        //   headers: {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/json',
+        //     'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
+        //   },
+        // })
+        //   .then(response => response.json())
+        //   .then(responseJson => {
+        //     console.log('responseJson : ',responseJson)
+        //     this.setState(
+        //       {
+        //         isLoading: false,
+        //         dataSource: responseJson,
 
-    //       },
-    //       function () {
-    //         this.arrayholder = responseJson;
-    //       }
-    //     );
+        //       },
+        //       function () {
+        //         this.arrayholder = responseJson;
+        //       }
+        //     );
 
-    //     console.log(responseJson);
-
-
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
+        //     console.log(responseJson);
 
 
+        //   })
+        //   .catch(error => {
+        //     console.error(error);
+        //   });
 
-  }
+
+
+      }
 
 
 
   CheckIn = () => {
-    return fetch('http://nexgenapi.dyndns.org:1024/Home/AppendTransaction', {
-      method: 'POST',//GET and ...
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
-      },
-      body: JSON.stringify({
+          return fetch('http://nexgenapi.dyndns.org:1024/Home/AppendTransaction', {
+            method: 'POST',//GET and ...
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
+            },
+            body: JSON.stringify({
 
-      })
-    })
-      .then((response) => response.json()) //   <------ this line 
-      .then((response) => {
-
-
+            })
+          })
+            .then((response) => response.json()) //   <------ this line 
+            .then((response) => {
 
 
-        console.log(response);
 
-        if (response != null) {
 
-          alert("Successfully Check In");
+              console.log(response);
+
+              if (response != null) {
+
+                alert("Successfully Check In");
+
+              }
+              else {
+
+                alert("Sorry Check In Failed");
+              }
+
+              return response;
+
+            });
 
         }
-        else {
-
-          alert("Sorry Check In Failed");
-        }
-
-        return response;
-
-      });
-
-  }
 
   CheckOut = () => {
-    return fetch('http://nexgenapi.dyndns.org:1024/Home/AppendTransaction', {
-      method: 'POST',//GET and ...
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
-      },
-      body: JSON.stringify({
+          return fetch('http://nexgenapi.dyndns.org:1024/Home/AppendTransaction', {
+            method: 'POST',//GET and ...
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
+            },
+            body: JSON.stringify({
 
-      })
-    })
-      .then((response) => response.json()) //   <------ this line 
-      .then((response) => {
+            })
+          })
+            .then((response) => response.json()) //   <------ this line 
+            .then((response) => {
 
 
-        console.log(response);
+              console.log(response);
 
-        if (response != null) {
+              if (response != null) {
 
-          alert("Successfully Check Out");
+                alert("Successfully Check Out");
+
+              }
+              else {
+
+                alert("Sorry Check Out Failed");
+              }
+
+              return response;
+
+            });
 
         }
-        else {
-
-          alert("Sorry Check Out Failed");
-        }
-
-        return response;
-
-      });
-
-  }
 
   Insert = () => {
-    return fetch('http://nexgenapi.dyndns.org:1024/Home/GetEmployees', {
-      method: 'POST',//GET and ...
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
-      },
-      body: JSON.stringify({
-        EmployeeId: null,
-        EmployeeName: '',
-      })
-    })
-      .then((response) => response.json()) //   <------ this line 
-      .then((response) => {
+          return fetch('http://nexgenapi.dyndns.org:1024/Home/GetEmployees', {
+            method: 'POST',//GET and ...
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
+            },
+            body: JSON.stringify({
+              EmployeeId: null,
+              EmployeeName: '',
+            })
+          })
+            .then((response) => response.json()) //   <------ this line 
+            .then((response) => {
 
 
-        return response;
+              return response;
 
-      });
+            });
 
-  }
+        }
 
 
   SearchFilterFunction(text) {
-    //passing the inserted text in textinput
-    const newData = this.arrayholder.filter(function (item) {
-      //applying filter for the inserted text in search bar
-      const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    });
-    this.setState({
-      //setting the filtered newData on datasource
-      //After setting the data it will automatically re-render the view
-      dataSource: newData,
-      text: text,
-    });
-  }
+        //passing the inserted text in textinput
+        const newData = this.arrayholder.filter(function (item) {
+          //applying filter for the inserted text in search bar
+          const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) > -1;
+        });
+        this.setState({
+          //setting the filtered newData on datasource
+          //After setting the data it will automatically re-render the view
+          dataSource: newData,
+          text: text,
+        });
+      }
   ListViewItemSeparator = () => {
-    //Item sparator view
-    return (
-      <View
-        style={{
-          height: 0.3,
-          width: '90%',
-          backgroundColor: '#080808',
-        }}
-      />
-    );
-  };
+          //Item sparator view
+          return (
+            <View
+              style={{
+                height: 0.3,
+                width: '90%',
+                backgroundColor: '#080808',
+              }}
+            />
+          );
+        };
 
-  toggleSearch = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-    this.setState({ showSearch: !this.state.showSearch })
-  }
-
-  showSearch = () => {
-    if (this.state.showSearch === true) {
-      return (
-        <TextInput
-          onChangeText={t => this.setState({ searchWord: t })}
-          style={{
-            height: 4 * vh,
-            width: 75 * vw,
-            fontSize: 2.5 * vh,
-            padding: 0,
-            textAlignVertical: 'center',
-            marginLeft: 3 * vw,
-            borderRadius: 5,
-            borderWidth: 1,
-            paddingLeft: 3 * vw,
-            color: '#fff',
-            borderColor: 'white'
-          }}
-          placeholder='Search'
-          placeholderTextColor='#fff'
-        />
-      )
-    } else {
-      return (
-        <Text style={{ fontSize: 2.5 * vh, marginLeft: 3 * vw, fontWeight: 'bold', color: '#FFF', height: 8 * vh, textAlignVertical: 'center' }}>
-          Sprinter
-        </Text>
-      )
+    toggleSearch = () => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+      this.setState({ showSearch: !this.state.showSearch })
     }
-  }
-  renderSelectAllIcon = () => {
-    if (this.state.selectAll === true) {
-      return (
-        <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/check.png')} />
-      )
-    } else {
-      return (
-        <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/unchecked.png')} />
-      )
-    }
-  }
 
-  selectAll = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-    this.setState({ selectAll: !this.state.selectAll }, () => {
-      this.state.data.map((item, index) => {
-        var data = this.state.data
-        data[index].isSelected = this.state.selectAll
-        this.setState({ data: data })
-      })
-    })
-  }
-  updateUser = (item, index) => {
-    var data = this.state.data
-    data[index].isSelected = data[index].isSelected ? !data[index].isSelected : true
-    this.setState({ data: data })
-  }
-  renderUser = ({ item, index }) => {
-    if (this.state.showSearch === true) {
-      if (this.state.searchWord.length > 0) {
-        let name = item.name.toUpperCase()
-        let shouldShow = name.includes(this.state.searchWord.toUpperCase())
-        if (shouldShow === false) {
-          return null;
-        }
-      }
-    }
-    return (
-      <TouchableOpacity onPress={() => this.updateUser(item, index)} style={{ height: 8 * vh, width: 92 * vw, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', justifyContent: 'space-between' }}>
-        <Image style={{ height: 5 * vh, width: 10 * vh, resizeMode: 'contain' }} source={require('./Images/Person.png')} />
-        <View style={{ width: 65 * vw }}>
-          <Text style={{ fontSize: 2 * vh, fontWeight: 'bold' }}>{item.name}</Text>
-          <Text>
-
+    showSearch = () => {
+      if (this.state.showSearch === true) {
+        return (
+          <TextInput
+            onChangeText={t => this.setState({ searchWord: t })}
+            style={{
+              height: 4 * vh,
+              width: 75 * vw,
+              fontSize: 2.5 * vh,
+              padding: 0,
+              textAlignVertical: 'center',
+              marginLeft: 3 * vw,
+              borderRadius: 5,
+              borderWidth: 1,
+              paddingLeft: 3 * vw,
+              color: '#fff',
+              borderColor: 'white'
+            }}
+            placeholder='Search'
+            placeholderTextColor='#fff'
+          />
+        )
+      } else {
+        return (
+          <Text style={{ fontSize: 2.5 * vh, marginLeft: 3 * vw, fontWeight: 'bold', color: '#FFF', height: 8 * vh, textAlignVertical: 'center' }}>
+            Sprinter
           </Text>
-        </View>
-        {(item.isSelected === true || this.state.selectAll === true) ?
+        )
+      }
+    }
+    renderSelectAllIcon = () => {
+      if (this.state.selectAll === true) {
+        return (
           <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/check.png')} />
-          : <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/unchecked.png')} />}
-      </TouchableOpacity>
-    )
-  }
-  checkIn = () => {
-    this.setState({ isLoading: true })
-    var dataToPost = []
-    let date = new Date().toLocaleString()
-    console.log(date.split(' '))
-    this.state.data.map(item => {
-      if (item.login != null) {
-        if (item.isSelected === true) {
-          dataToPost.push({
-            login: item.login,
-            UserName: item.name,
-            checktimestr: date,
-            CheckType: 1,
-            Latitude: 232,
-            Longitude: 232,
-            LocationName: "Dolmen Mall Tariq Road"
-          })
-        }
+        )
+      } else {
+        return (
+          <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/unchecked.png')} />
+        )
       }
-    })
-    if(dataToPost.length > 0){
-    this.postData(dataToPost)
-     
-    }else{
-      alert('Please select data')
-      return
     }
-  }
-  postData = (data) => {
-    const url = "http://nexgen-demo.dyndns.org:1012/Home/AppendBulkTransaction"
-    const config = {
-      method:'POST',
-      body:JSON.stringify(data),
-      Authorization: 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
-    }
-    fetch(url,config)
-    .then(d=>{
-      d.json()
-      .then(res=>{
-        console.log(res)
-        this.setState({isLoading:false})
-        Alert.alert('Succes','Data posted successfully',[{text:'OK'}])
-      }).catch(e=>{
-        console.log(e)
-        Alert.alert('Error','Could not post data',[{text:'OK'}])
-    })
-    }).catch(e=>{
-        console.log(e)
-        Alert.alert('Error','Could not post data',[{text:'OK'}])
 
-    })
-  }
-  checkOut = () => {
-    // {
-    //   login:2,
-    //   checktimestr:04/25/2019 18:25:30,
-    //   CheckType:0,
-    //   Latitude:232,
-    //   Longitude:232,”
-    //   LocationName”:”Dolmen Mall Tariq Road”
-    //   },
-    this.setState({ isLoading: true })
-    var dataToPost = []
-    let date = new Date().toLocaleString()
-    console.log(date.split(' '))
-    this.state.data.map(item => {
-      if (item.login != null) {
-        if (item.isSelected === true) {
-          dataToPost.push({
-            login: item.login,
-            UserName: item.name,
-            
-            checktimestr: date,
-            CheckType: 0,
-            Latitude: 232,
-            Longitude: 232,
-            LocationName: "Dolmen Mall Tariq Road"
-          })
+    selectAll = () => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+      this.setState({ selectAll: !this.state.selectAll }, () => {
+        this.state.data.map((item, index) => {
+          var data = this.state.data
+          data[index].isSelected = this.state.selectAll
+          this.setState({ data: data })
+        })
+      })
+    }
+    updateUser = (item, index) => {
+      var data = this.state.data
+      data[index].isSelected = data[index].isSelected ? !data[index].isSelected : true
+      this.setState({ data: data })
+    }
+    renderUser = ({ item, index }) => {
+      if (this.state.showSearch === true) {
+        if (this.state.searchWord.length > 0) {
+          let name = item.name.toUpperCase()
+          let shouldShow = name.includes(this.state.searchWord.toUpperCase())
+          if (shouldShow === false) {
+            return null;
+          }
         }
       }
-    })
-    if(dataToPost.length > 0){
-      this.postData(dataToPost)
-       
-      }else{
+      return (
+        <TouchableOpacity onPress={() => this.updateUser(item, index)} style={{ height: 8 * vh, width: 92 * vw, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', justifyContent: 'space-between' }}>
+          <Image style={{ height: 5 * vh, width: 10 * vh, resizeMode: 'contain' }} source={require('./Images/Person.png')} />
+          <View style={{ width: 65 * vw }}>
+            <Text style={{ fontSize: 2 * vh, fontWeight: 'bold' }}>{item.name}</Text>
+            <Text>
+
+            </Text>
+          </View>
+          {(item.isSelected === true || this.state.selectAll === true) ?
+            <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/check.png')} />
+            : <Image style={{ height: 2.5 * vh, width: 2.5 * vh, resizeMode: 'contain', marginRight: 5 * vw }} source={require('./Images/unchecked.png')} />}
+        </TouchableOpacity>
+      )
+    }
+    checkIn = () => {
+      this.setState({ isLoading: true })
+      var dataToPost = []
+      let date = new Date().toLocaleString()
+      console.log(date.split(' '))
+      this.state.data.map(item => {
+        if (item.login != null) {
+          if (item.isSelected === true) {
+            dataToPost.push({
+              login: item.login,
+              UserName: item.name,
+              checktimestr: date,
+              CheckType: 1,
+              Latitude: 232,
+              Longitude: 232,
+              LocationName: "Dolmen Mall Tariq Road"
+            })
+          }
+        }
+      })
+      if (dataToPost.length > 0) {
+        this.postData(dataToPost)
+
+      } else {
         alert('Please select data')
         return
       }
-  }
-  render() {
-    let datetime = new Date().toLocaleString().split(' ')
-    let time = datetime[1]
-    let date = datetime[0].replace(',','')
-    return (
+    }
+    postData = (data) => {
+      const url = "http://nexgen-demo.dyndns.org:1012/Home/AppendBulkTransaction"
+      const config = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        Authorization: 'Basic U3ByaW50ZXJBcHBVc2VyOmMzQnlhVzUwWlhKQU1qQXhPQT09'
+      }
+      fetch(url, config)
+        .then(d => {
+          d.json()
+            .then(res => {
+              console.log(res)
+              this.setState({ isLoading: false })
+              Alert.alert('Succes', 'Data posted successfully', [{ text: 'OK' }])
+            }).catch(e => {
+              console.log(e)
+              Alert.alert('Error', 'Could not post data', [{ text: 'OK' }])
+            })
+        }).catch(e => {
+          console.log(e)
+          Alert.alert('Error', 'Could not post data', [{ text: 'OK' }])
+
+        })
+    }
+    checkOut = () => {
+      // {
+      //   login:2,
+      //   checktimestr:04/25/2019 18:25:30,
+      //   CheckType:0,
+      //   Latitude:232,
+      //   Longitude:232,”
+      //   LocationName”:”Dolmen Mall Tariq Road”
+      //   },
+      this.setState({ isLoading: true })
+      var dataToPost = []
+      let date = new Date().toLocaleString()
+      console.log(date.split(' '))
+      this.state.data.map(item => {
+        if (item.login != null) {
+          if (item.isSelected === true) {
+            dataToPost.push({
+              login: item.login,
+              UserName: item.name,
+
+              checktimestr: date,
+              CheckType: 0,
+              Latitude: 232,
+              Longitude: 232,
+              LocationName: "Dolmen Mall Tariq Road"
+            })
+          }
+        }
+      })
+      if (dataToPost.length > 0) {
+        this.postData(dataToPost)
+
+      } else {
+        alert('Please select data')
+        return
+      }
+    }
+    render() {
+      let datetime = new Date().toLocaleString().split(' ')
+      let time = datetime[1]
+      let date = datetime[0].replace(',', '')
+      return (
 
 
-      <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-        <StatusBar
-          translucent={false}
-          backgroundColor='#105EF9'
-        />
-        <View style={{ height: 8 * vh, elevation: 10, backgroundColor: '#105EF9', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+          <StatusBar
+            translucent={false}
+            backgroundColor='#105EF9'
+          />
+          <View style={{ height: 8 * vh, elevation: 10, backgroundColor: '#105EF9', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
 
-          {this.showSearch()}
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity onPress={this.toggleSearch} style={{ justifyContent: 'center', marginRight: 2 * vw }}>
-              <Image style={{ resizeMode: 'contain', height: 2.5 * vh, width: 2.5 * vh }} source={require('./Images/searchWhite.png')} />
-            </TouchableOpacity>
-            <CustomMenu
-              //Menu Text
-              menutext="Menu"
-              //Menu View Style
-              menustyle={{
-                marginRight: 16,
-                flexDirection: 'row',
-                justifyContent: 'flex-end',
-              }}
-              //Menu Text Style
-              textStyle={{
-                color: 'white',
-              }}
-              //Click functions for the menu items
-              option1Click={() => {
-                this.props.navigation.navigate("Setting");
-              }}
-              option2Click={() => { this.props.navigation.navigate("AdminDashboard"); }}
-              option3Click={() => { this.props.navigation.navigate("Login"); }}
+            {this.showSearch()}
+            <View style={{ flexDirection: 'row' }}>
+              <TouchableOpacity onPress={this.toggleSearch} style={{ justifyContent: 'center', marginRight: 2 * vw }}>
+                <Image style={{ resizeMode: 'contain', height: 2.5 * vh, width: 2.5 * vh }} source={require('./Images/searchWhite.png')} />
+              </TouchableOpacity>
+              <CustomMenu
+                //Menu Text
+                menutext="Menu"
+                //Menu View Style
+                menustyle={{
+                  marginRight: 16,
+                  flexDirection: 'row',
+                  justifyContent: 'flex-end',
+                }}
+                //Menu Text Style
+                textStyle={{
+                  color: 'white',
+                }}
+                //Click functions for the menu items
+                option1Click={() => {
+                  this.props.navigation.navigate("Setting");
+                }}
+                option2Click={() => { this.props.navigation.navigate("AdminDashboard"); }}
+                option3Click={() => { this.props.navigation.navigate("Login"); }}
 
-            />
+              />
+            </View>
+
           </View>
+          <LinearGradient
+            start={{ x: 0, y: 0 }} end={{ x: 0.5, y: 0 }}
+            colors={['#4A89FA', '#101CD1']} style={{ height: 20 * vh, width: '100%' }}>
+            <View style={{ flex: 1, flexWrap: 'wrap', alignItems: 'center' }}>
+              <TouchableOpacity style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
+                <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>{date}</Text>
+              </TouchableOpacity>
 
-        </View>
-        <LinearGradient
-          start={{ x: 0, y: 0 }} end={{ x: 0.5, y: 0 }}
-          colors={['#4A89FA', '#101CD1']} style={{ height: 20 * vh, width: '100%' }}>
-          <View style={{ flex: 1, flexWrap: 'wrap', alignItems: 'center' }}>
-            <TouchableOpacity style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
-              <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>{date}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={this.checkIn} style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
+                <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>CheckIn</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={this.checkIn} style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
-              <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>CheckIn</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
+                <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>{time}</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
-              <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>{time}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={this.checkOut} style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
+                <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>CheckOut</Text>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+          <View style={{ width: 100 * vw, height: 8 * vh, backgroundColor: 'white', marginVertical: 2 * vh, flexDirection: 'row', paddingHorizontal: 3 * vw, justifyContent: 'flex-end', alignItems: 'center' }}>
 
-            <TouchableOpacity onPress={this.checkOut} style={{ marginLeft: 6 * vw, alignItems: 'center', justifyContent: 'center', width: 42 * vw, marginTop: 2.5 * vh, height: 6 * vh, borderWidth: 1, borderColor: '#FFF', borderRadius: 2 * vw }}>
-              <Text style={{ color: '#fff', fontSize: 2.5 * vh }}>CheckOut</Text>
+            <Text style={{ fontSize: 2 * vh, fontWeight: 'bold', marginRight: 3 * vw }}>Select All</Text>
+            <TouchableOpacity onPress={() => this.selectAll()}>
+              {this.renderSelectAllIcon()}
             </TouchableOpacity>
           </View>
-        </LinearGradient>
-        <View style={{ width: 100 * vw, height: 8 * vh, backgroundColor: 'white', marginVertical: 2 * vh, flexDirection: 'row', paddingHorizontal: 3 * vw, justifyContent: 'flex-end', alignItems: 'center' }}>
-
-          <Text style={{ fontSize: 2 * vh, fontWeight: 'bold', marginRight: 3 * vw }}>Select All</Text>
-          <TouchableOpacity onPress={() => this.selectAll()}>
-            {this.renderSelectAllIcon()}
-          </TouchableOpacity>
-        </View>
-        <FlatList
-          data={this.state.data}
-          renderItem={this.renderUser}
-          contentContainerStyle={{
-            alignItems: 'center'
-          }}
-        />
-        {/* <DateTimePickerModal
+          <FlatList
+            data={this.state.data}
+            renderItem={this.renderUser}
+            contentContainerStyle={{
+              alignItems: 'center'
+            }}
+          />
+          {/* <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       /> */}
-        {/* <View style={styles.viewStyle}>
+          {/* <View style={styles.viewStyle}>
 
           <TextInput
             style={styles.textInputStyle}
@@ -585,88 +597,88 @@ export default class AdminDashboard extends React.Component {
 
         </View> */}
 
-      </View>
+        </View>
 
 
-    );
+      );
+    }
   }
-}
 
 
-const styles = StyleSheet.create({
-  button: {
-    width: 40 * vw
-  },
-  buttonText: {
+  const styles = StyleSheet.create({
+    button: {
+      width: 40 * vw
+    },
+    buttonText: {
 
-  },
-  containerStyle: {
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: '#ddd',
-    borderBottomWidth: 0,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 1,
-    opacity: 0.9,
-    marginLeft: "15%",
-    marginRight: "15%",
-    marginTop: -5,
-    backgroundColor: 'white',
-    width: 340,
-    height: 400,
+    },
+    containerStyle: {
+      borderWidth: 1,
+      borderRadius: 10,
+      borderColor: '#ddd',
+      borderBottomWidth: 0,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      elevation: 1,
+      opacity: 0.9,
+      marginLeft: "15%",
+      marginRight: "15%",
+      marginTop: -5,
+      backgroundColor: 'white',
+      width: 340,
+      height: 400,
 
 
-  },
-  datePickerBox: {
-    marginTop: 9,
-    borderColor: '#FF5722',
-    borderWidth: 0.5,
-    padding: 0,
-    borderTopLeftRadius: 4,
-    borderTopRightRadius: 4,
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
-    height: 38,
-    justifyContent: 'center',
+    },
+    datePickerBox: {
+      marginTop: 9,
+      borderColor: '#FF5722',
+      borderWidth: 0.5,
+      padding: 0,
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4,
+      borderBottomLeftRadius: 4,
+      borderBottomRightRadius: 4,
+      height: 38,
+      justifyContent: 'center',
 
-  },
+    },
 
-  datePickerText: {
-    fontSize: 14,
-    marginLeft: 5,
-    borderWidth: 0,
-    color: '#f00',
+    datePickerText: {
+      fontSize: 14,
+      marginLeft: 5,
+      borderWidth: 0,
+      color: '#f00',
 
-  },
+    },
 
-  viewStyle: {
-    justifyContent: 'center',
-    flex: 1,
-    marginTop: 15,
-    marginBottom: 5,
-    padding: 16,
-    width: "90%",
+    viewStyle: {
+      justifyContent: 'center',
+      flex: 1,
+      marginTop: 15,
+      marginBottom: 5,
+      padding: 16,
+      width: "90%",
 
-  },
-  textStyle: {
-    padding: 10,
+    },
+    textStyle: {
+      padding: 10,
 
-  },
-  textInputStyle: {
-    height: 40,
-    borderWidth: 1,
-    paddingLeft: 10,
-    borderColor: '#000',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 5,
+    },
+    textInputStyle: {
+      height: 40,
+      borderWidth: 1,
+      paddingLeft: 10,
+      borderColor: '#000',
+      backgroundColor: '#FFFFFF',
+      borderRadius: 5,
 
-  },
-});
-const vw = Dimensions.get('window').width * 0.01
-const vh = Dimensions.get('window').height * 0.01
-if (Platform.OS === 'android') {
+    },
+  });
+  const vw = Dimensions.get('window').width * 0.01
+  const vh = Dimensions.get('window').height * 0.01
+  if(Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 }
